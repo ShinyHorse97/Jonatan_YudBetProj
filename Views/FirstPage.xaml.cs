@@ -1,12 +1,11 @@
 namespace Jonatan_YudBetProj.Views;
-using Models;
 public partial class FirstPage : ContentPage
 {
 	public FirstPage()
 	{
 		InitializeComponent();
-		
-		foreach (var user in new UsersList().Users)
+        //foreach user in UsersList in the database, create a horizontal stack layout with the user's name, email, and image and add it to the DataLayout
+        foreach (var user in services.Database.UsersList)
         {
             var layout = new HorizontalStackLayout
             {
@@ -38,5 +37,5 @@ public partial class FirstPage : ContentPage
             DataLayout.Children.Add(layout);
         }
     }
-    // get the list of users from the UsersList class and display them in the ListView
+    // get the list of users from the Database and display them in the ListView
 }

@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Jonatan_YudBetProj.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Jonatan_YudBetProj.Models
+namespace Jonatan_YudBetProj.services
 {
-    internal class UsersList
+    internal class Database
     {
-        public List<Users> Users = new List<Users>
+        public static List<Users> UsersList = new List<Users>
         {
             new Users { Id = 1, Name = "Jonatan Shlain", Email = "jonatan.shlain@example.com", ImageSRC = "default_img.jpg" },
             new Users { Id = 2, Name = "Max Verstappen", Email = "max.verstappen@example.com", ImageSRC = "ver_img.jpg" },
