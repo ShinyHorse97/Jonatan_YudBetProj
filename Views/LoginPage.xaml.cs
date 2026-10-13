@@ -1,3 +1,6 @@
+using Jonatan_YudBetProj.Models;
+using Jonatan_YudBetProj.services;
+
 namespace Jonatan_YudBetProj.Views;
 
 public partial class LoginPage : ContentPage
@@ -8,23 +11,38 @@ public partial class LoginPage : ContentPage
 	}
 	public void OnLoginButtonClicked(object sender, EventArgs e)
     {
+        //reset all error labels
+        EmailErrorLabel.IsVisible = false;
+        PasswordErrorLabel.IsVisible = false;
         // Get the email and password from the Entry controls
         var email = EmailEntry.Text;
         var password = PasswordEntry.Text;
         // Check if the email and password are valid
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        if (string.IsNullOrEmpty(email))
         {
-            DisplayAlert("Error", "Please enter your email and password.", "OK");
+            EmailErrorLabel.IsVisible = true;
+            EmailErrorLabel.Text = "Email is required.";
             return;
         }
-        // Check if the user exists in the database
-        var user = services.Database.UsersList.FirstOrDefault(u => u.Email == email && u.Password == password);
-        if (user == null)
+        if (string.IsNullOrEmpty(password))
         {
-            DisplayAlert("Error", "Invalid email or password.", "OK");
+            PasswordErrorLabel.IsVisible = true;
+            PasswordErrorLabel.Text = "Password is required.";
             return;
         }
-        // Navigate to the FirstPage
-        Navigation.PushAsync(new FirstPage());
+        //check if the email and password are in Database
+        if(!Database.UserExists(email, password))
+        {
+            PasswordErrorLabel.IsVisible = true;
+            PasswordErrorLabel.Text = "Invalid email or password.";
+            return;
+        }
+        else
+        {
+            EmailErrorLabel.IsVisible = false;
+            PasswordErrorLabel.IsVisible = false;
+            // Navigate to the FirstPage
+            Navigation.PushAsync(new FirstPage());
+        }
     }
 }

@@ -15,5 +15,9 @@ namespace Jonatan_YudBetProj.services
             new Users { Id = 4, Name = "Charles Leclerc", Email = "charles.leclerc@example.com", ImageSRC = "lec_img.jpg" },
             new Users { Id = 5, Name = "Lando Norris", Email = "lando.norris@example.com", ImageSRC = "nor_img.jpg" }
         };
+        public static bool UserExists(string email, string password)
+        {
+            return UsersList.Exists(u => u.Email == email && u.Password == password);
+        }
     }
 }

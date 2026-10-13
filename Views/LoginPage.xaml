@@ -16,10 +16,18 @@
             x:Name="EmailEntry"
             Placeholder="Email"
             Keyboard="Email" />
+        <Label
+            x:Name="EmailErrorLabel"
+            TextColor="Red"
+            IsVisible="False" />
         <Entry
             x:Name="PasswordEntry"
             Placeholder="Password"
             IsPassword="True" />
+        <Label
+            x:Name="PasswordErrorLabel"
+            TextColor="Red"
+            IsVisible="False" />
         <Button
             Text="Login"
             FontSize="18"

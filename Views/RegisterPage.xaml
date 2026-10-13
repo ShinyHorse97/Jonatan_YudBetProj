@@ -4,32 +4,49 @@
              x:Class="Jonatan_YudBetProj.Views.RegisterPage"
              Title="RegisterPage">
     <!-- register page with fields for email, password, and confirm password -->
-    <VerticalStackLayout
+    <ScrollView>
+        <VerticalStackLayout
         Spacing="25"
         Padding="30"
         VerticalOptions="Center">
-        <Label
+            <Label
             Text="Register for Jonatan_YudBetProj!"
             FontSize="32"
             HorizontalOptions="Center" />
-        <Entry
+            <Entry
             x:Name="UsernameEntry"
             Placeholder="Username" />
-        <Entry
+            <Label x:Name="UsernameErrorLabel"
+               TextColor="Red"
+               IsVisible="False"/>
+            <Entry
             x:Name="EmailEntry"
             Placeholder="Email"
             Keyboard="Email" />
-        <Entry
+            <Label
+            x:Name="EmailErrorLabel"
+            TextColor="Red"
+            IsVisible="False" />
+            <Entry
             x:Name="PasswordEntry"
             Placeholder="Password"
             IsPassword="True" />
-        <Entry
+            <Label
+            x:Name="PasswordErrorLabel"
+            TextColor="Red"
+            IsVisible="False" />
+            <Label
+            x:Name="ConfirmPasswordErrorLabel"
+            TextColor="Red"
+            IsVisible="False" />
+            <Entry
             x:Name="ConfirmPasswordEntry"
             Placeholder="Confirm Password"
             IsPassword="True" />
-        <Button
+            <Button
             Text="Register"
             FontSize="18"
             Clicked="OnRegisterButtonClicked" />
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
