@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jonatan_YudBetProj.Views.WelcomePage"
+             Title="WelcomePage">
+    <!-- welcome page with options to login or register -->
+    <VerticalStackLayout
+        Spacing="25"
+        Padding="30"
+        VerticalOptions="Center">
+            <Label
+            Text="Welcome to Jonatan_YudBetProj!"
+            FontSize="32"
+            HorizontalOptions="Center" />
+            <Button
+            Text="Login"
+            FontSize="18"
+            Clicked="OnLoginButtonClicked" />
+            <Button
+            Text="Register"
+            FontSize="18"
+            Clicked="OnRegisterButtonClicked" />
+    </VerticalStackLayout>
+</ContentPage>
