@@ -5,14 +5,18 @@ namespace Jonatan_YudBetProj.Views;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+    public bool IsFormValid = true;
+    public LoginPage()
 	{
 		InitializeComponent();
 	}
 	public void OnLoginButtonClicked(object sender, EventArgs e)
     {
-        //reset all error labels
+        // reset validation state and error labels
+        IsFormValid = true;
+        EmailErrorLabel.Text = string.Empty;
         EmailErrorLabel.IsVisible = false;
+        PasswordErrorLabel.Text = string.Empty;
         PasswordErrorLabel.IsVisible = false;
         // Get the email and password from the Entry controls
         var email = EmailEntry.Text;
@@ -20,29 +24,34 @@ public partial class LoginPage : ContentPage
         // Check if the email and password are valid
         if (string.IsNullOrEmpty(email))
         {
-            EmailErrorLabel.IsVisible = true;
             EmailErrorLabel.Text = "Email is required.";
-            return;
+            EmailErrorLabel.IsVisible = true;
+            IsFormValid = false;
         }
         if (string.IsNullOrEmpty(password))
         {
-            PasswordErrorLabel.IsVisible = true;
             PasswordErrorLabel.Text = "Password is required.";
-            return;
+            PasswordErrorLabel.IsVisible = true;
+            IsFormValid = false;
         }
         //check if the email and password are in Database
         if(!Database.UserExists(email, password))
         {
-            PasswordErrorLabel.IsVisible = true;
             PasswordErrorLabel.Text = "Invalid email or password.";
-            return;
+            PasswordErrorLabel.IsVisible = true;
+            IsFormValid = false;
         }
-        else
+        else if(IsFormValid)
         {
             EmailErrorLabel.IsVisible = false;
             PasswordErrorLabel.IsVisible = false;
             // Navigate to the FirstPage
             Navigation.PushAsync(new FirstPage());
         }
+    }
+
+    public void OnRegisterTapped(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new RegisterPage());
     }
 }

@@ -2,51 +2,46 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jonatan_YudBetProj.Views.RegisterPage"
-             Title="RegisterPage">
-    <!-- register page with fields for email, password, and confirm password -->
-    <ScrollView>
-        <VerticalStackLayout
-        Spacing="25"
-        Padding="30"
-        VerticalOptions="Center">
-            <Label
-            Text="Register for Jonatan_YudBetProj!"
-            FontSize="32"
-            HorizontalOptions="Center" />
-            <Entry
-            x:Name="UsernameEntry"
-            Placeholder="Username" />
-            <Label x:Name="UsernameErrorLabel"
-               TextColor="Red"
-               IsVisible="False"/>
-            <Entry
-            x:Name="EmailEntry"
-            Placeholder="Email"
-            Keyboard="Email" />
-            <Label
-            x:Name="EmailErrorLabel"
-            TextColor="Red"
-            IsVisible="False" />
-            <Entry
-            x:Name="PasswordEntry"
-            Placeholder="Password"
-            IsPassword="True" />
-            <Label
-            x:Name="PasswordErrorLabel"
-            TextColor="Red"
-            IsVisible="False" />
-            <Label
-            x:Name="ConfirmPasswordErrorLabel"
-            TextColor="Red"
-            IsVisible="False" />
-            <Entry
-            x:Name="ConfirmPasswordEntry"
-            Placeholder="Confirm Password"
-            IsPassword="True" />
-            <Button
-            Text="Register"
-            FontSize="18"
-            Clicked="OnRegisterButtonClicked" />
-        </VerticalStackLayout>
-    </ScrollView>
+             Title="Register"
+             Background="Black">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#070707" Offset="0" />
+                <GradientStop Color="#0f0f0f" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="18" Padding="24" HorizontalOptions="Center" VerticalOptions="Center">
+                <Frame Style="{StaticResource CardFrameStyle}" WidthRequest="460">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Sign Up" Style="{StaticResource HeaderLabelStyle}" />
+                        <Label Text="Join the grid — create your account" TextColor="{StaticResource TextLight}" HorizontalOptions="Center" />
+
+                        <Entry x:Name="UsernameEntry" Placeholder="Username" Style="{StaticResource EntryStyle}" />
+                        <Label x:Name="UsernameErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+
+                        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}" />
+                        <Label x:Name="EmailErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+
+                        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                        <Label x:Name="PasswordErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+
+                        <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                        <Label x:Name="ConfirmPasswordErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+
+                        <Button Text="REGISTER" Style="{StaticResource PrimaryButtonStyle}" Clicked="OnRegisterButtonClicked" />
+
+
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                            <Label Text="Already have an account?" TextColor="{StaticResource TextLight}" FontSize="12" VerticalOptions="Center" />
+                            <Button Text="Login" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Clicked="OnLoginTapped" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

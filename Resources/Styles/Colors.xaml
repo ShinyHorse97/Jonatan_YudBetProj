@@ -41,4 +41,16 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+    <!-- Motorsports palette -->
+    <Color x:Key="BackgroundDark">#0b0b0b</Color>
+    <Color x:Key="PanelColor">#121212</Color>
+    <Color x:Key="Accent">#FF3B30</Color>
+    <Color x:Key="AccentAlt">#9D00FF</Color>
+    <Color x:Key="TextLight">#EEEEEE</Color>
+
+    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" />
+    <SolidColorBrush x:Key="PanelColorBrush" Color="{StaticResource PanelColor}" />
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource Accent}" />
+    <SolidColorBrush x:Key="AccentAltBrush" Color="{StaticResource AccentAlt}" />
+    <SolidColorBrush x:Key="TextLightBrush" Color="{StaticResource TextLight}" />
 </ResourceDictionary>
