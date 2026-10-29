@@ -2,23 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jonatan_YudBetProj.Views.WelcomePage"
-             Title="WelcomePage">
-    <!-- welcome page with options to login or register -->
-    <VerticalStackLayout
-        Spacing="25"
-        Padding="30"
-        VerticalOptions="Center">
-            <Label
-            Text="Welcome to Jonatan_YudBetProj!"
-            FontSize="32"
-            HorizontalOptions="Center" />
-            <Button
-            Text="Login"
-            FontSize="18"
-            Clicked="OnLoginButtonClicked" />
-            <Button
-            Text="Register"
-            FontSize="18"
-            Clicked="OnRegisterButtonClicked" />
-    </VerticalStackLayout>
+             Title="Welcome"
+             Shell.NavBarIsVisible="False"
+             Background="Black">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#070707" Offset="0" />
+                <GradientStop Color="#0f0f0f" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="18"
+                                 Padding="24"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+                <Frame Style="{StaticResource CardFrameStyle}"
+                       WidthRequest="420">
+                    <VerticalStackLayout Spacing="16">
+                        <Image Source="purple_sector_logo.png"
+                               HeightRequest="100"
+                               WidthRequest="180"
+                               Aspect="AspectFit"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Start"/>
+
+                        <Label Text="Welcome to Purple Sector"
+                               Style="{StaticResource HeaderLabelStyle}" />
+                        <Label Text="Find your way through the grid"
+                               TextColor="{StaticResource TextLight}"
+                               HorizontalOptions="Center" />
+
+                        <Button Text="LOGIN"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Clicked="OnLoginButtonClicked" />
+                        <Button Text="REGISTER"
+                                Style="{StaticResource PrimaryButtonStyle}"
+                                Clicked="OnRegisterButtonClicked" />
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

@@ -19,5 +19,12 @@ namespace Jonatan_YudBetProj.services
         {
             return UsersList.Exists(u => u.Email == email && u.Password == password);
         }
+
+        public static List<RaceTrack> RaceTracksList = new List<RaceTrack>
+        {
+            new RaceTrack { Id = "1", Name = "Monaco Grand Prix", Location = "Monaco", Length = 3337, Turns = 19 },
+            new RaceTrack { Id = "2", Name = "Silverstone Grand Prix", Location = "United Kingdom", Length = 5891, Turns = 18 },
+            new RaceTrack { Id = "3", Name = "Suzuka Grand Prix", Location = "Japan", Length = 5807, Turns = 18 }
+        };
     }
 }

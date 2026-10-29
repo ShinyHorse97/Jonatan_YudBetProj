@@ -1,10 +1,13 @@
-﻿namespace Jonatan_YudBetProj
+﻿using Jonatan_YudBetProj.Views;
+
+namespace Jonatan_YudBetProj
 {
     public partial class AppShell : Shell
     {
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(WelcomePage), typeof(WelcomePage));
         }
     }
 }
