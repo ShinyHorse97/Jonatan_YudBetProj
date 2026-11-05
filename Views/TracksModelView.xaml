@@ -2,19 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Jonatan_YudBetProj.Views.TracksModelView"
-             Title="TracksModelView">
-    <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding raceTracks}">
+             Title="Race Tracks"
+             BackgroundColor="{StaticResource BackgroundDark}">
+    <Grid RowDefinitions="Auto,*" Padding="16,24">
+        <Label Text="Race Tracks"
+               Style="{StaticResource HeaderLabelStyle}"
+               HorizontalOptions="Start"
+               Margin="8,0,8,18" />
+
+        <CollectionView Grid.Row="1"
+                        x:Name="TracksCollectionView"
+                        ItemsSource="{Binding RaceTracks}"
+                        SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                  x:Name="TracksLayout"
+                                  Span="2"
+                                  HorizontalItemSpacing="12"
+                                  VerticalItemSpacing="12" />
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding Name}" />
-                        <Label Text="{Binding Location}" />
-                        <Label Text="{Binding Length, StringFormat='Length: {0} m'}" />
-                        <Label Text="{Binding Turns, StringFormat='Turns: {0}'}" />
-                    </StackLayout>
+                    <Border Style="{StaticResource CardFrameStyle}"
+                           Margin="0"
+                           Padding="12"
+                           WidthRequest="225"
+                           HeightRequest="250">
+                        <Grid RowDefinitions="Auto,Auto,120,Auto"
+                              RowSpacing="8">
+                            <Label Text="{Binding Name}"
+                                   FontSize="17"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource AccentAlt}"
+                                   LineBreakMode="WordWrap" />
+                            <Label Grid.Row="1"
+                                   Text="{Binding Location}"
+                                   FontSize="13"
+                                   TextColor="{StaticResource TextLight}" /> 
+                            <Border Grid.Row="2"
+                                    HorizontalOptions="Start"
+                                    Stroke="#3a3a3a"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="#151515"
+                                    Padding="0"
+                                    WidthRequest="200"
+                                    Margin="0,4">
+                                <!--make the whole images fit in the border-->
+                                <Image Source="{Binding TrackImage}"
+                                       Aspect="AspectFit"
+                                       HorizontalOptions="Start"
+                                       VerticalOptions="Fill" />
+                            </Border>
+                            <VerticalStackLayout Grid.Row="3" Spacing="3">
+                                <Label Text="{Binding Length, StringFormat='Length: {0} m'}"
+                                       FontSize="13"
+                                       TextColor="{StaticResource TextLight}" />
+                                <Label Text="{Binding Turns, StringFormat='Turns: {0}'}"
+                                       FontSize="13"
+                                       TextColor="{StaticResource TextLight}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+    </Grid>
 </ContentPage>

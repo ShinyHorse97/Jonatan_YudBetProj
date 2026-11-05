@@ -16,7 +16,7 @@
 
         <ScrollView>
             <VerticalStackLayout Spacing="18" Padding="24" HorizontalOptions="Center" VerticalOptions="Center">
-                <Frame Style="{StaticResource CardFrameStyle}" WidthRequest="420">
+                <Border Style="{StaticResource CardFrameStyle}" WidthRequest="420">
                     <VerticalStackLayout Spacing="14">
                         <Label Text="Log In" Style="{StaticResource HeaderLabelStyle}" />
                         <Label Text="Sign in to access the pit" TextColor="{StaticResource TextLight}" HorizontalOptions="Center" />
@@ -34,7 +34,7 @@
                             <Button Text="Register" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Clicked="OnRegisterTapped" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

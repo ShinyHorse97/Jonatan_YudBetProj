@@ -18,7 +18,7 @@
                                  Padding="24"
                                  HorizontalOptions="Center"
                                  VerticalOptions="Center">
-                <Frame Style="{StaticResource CardFrameStyle}"
+                <Border Style="{StaticResource CardFrameStyle}"
                        WidthRequest="420">
                     <VerticalStackLayout Spacing="16">
                         <Image Source="purple_sector_logo.png"
@@ -41,7 +41,7 @@
                                 Style="{StaticResource PrimaryButtonStyle}"
                                 Clicked="OnRegisterButtonClicked" />
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

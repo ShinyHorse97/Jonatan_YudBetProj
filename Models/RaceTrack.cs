@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Jonatan_YudBetProj.Models
 {
-    internal class RaceTrack
+    public class RaceTrack
     {
         public string? Name { get; set; }
         public string? Id { get; set; }

@@ -15,7 +15,7 @@
 
         <ScrollView>
             <VerticalStackLayout Spacing="18" Padding="24" HorizontalOptions="Center" VerticalOptions="Center">
-                <Frame Style="{StaticResource CardFrameStyle}" WidthRequest="460">
+                <Border Style="{StaticResource CardFrameStyle}" WidthRequest="460">
                     <VerticalStackLayout Spacing="12">
                         <Label Text="Sign Up" Style="{StaticResource HeaderLabelStyle}" />
                         <Label Text="Join the grid — create your account" TextColor="{StaticResource TextLight}" HorizontalOptions="Center" />
@@ -40,7 +40,7 @@
                             <Button Text="Login" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Clicked="OnLoginTapped" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

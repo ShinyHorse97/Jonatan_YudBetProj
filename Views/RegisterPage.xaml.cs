@@ -91,7 +91,7 @@ public partial class RegisterPage : ContentPage
         else if (IsFormValid)
         {
             // Create a new user and add it to the database
-            var newUser = new Models.Users()
+            var newUser = new Models.User()
             {
                 Name = name,
                 Email = email,

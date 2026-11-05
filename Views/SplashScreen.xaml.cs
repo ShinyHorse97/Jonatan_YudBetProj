@@ -5,6 +5,7 @@ namespace Jonatan_YudBetProj.Views;
 
 public partial class SplashScreen : ContentPage
 {
+	private static readonly TimeSpan MinimumSplashDuration = TimeSpan.FromSeconds(5);
 	private readonly SectorChartDrawable _chartDrawable = new();
 	private CancellationTokenSource? _animationCancellation;
 	private bool _hasNavigated;
@@ -40,22 +41,31 @@ public partial class SplashScreen : ContentPage
 			_chartDrawable.Reset();
 			SectorChart.Invalidate();
 
-			await Task.Delay(80, cancellationToken);
-			for (var sector = 0; sector < 3; sector++)
+			while (true)
 			{
-				for (var frame = 0; frame <= 16; frame++)
+				cancellationToken.ThrowIfCancellationRequested();
+				var animationElapsed = Stopwatch.GetElapsedTime(animationStarted);
+				var progress = Math.Clamp(
+					(float)(animationElapsed.TotalMilliseconds / MinimumSplashDuration.TotalMilliseconds),
+					0f,
+					1f);
+				var sequentialProgress = progress * SectorChartDrawable.SectorCount;
+
+				for (var sector = 0; sector < SectorChartDrawable.SectorCount; sector++)
 				{
-					cancellationToken.ThrowIfCancellationRequested();
-					_chartDrawable.SetProgress(sector, SmoothStep(frame / 16f));
-					SectorChart.Invalidate();
-					await Task.Delay(12, cancellationToken);
+					var sectorProgress = Math.Clamp(sequentialProgress - sector, 0f, 1f);
+					_chartDrawable.SetProgress(sector, SmoothStep(sectorProgress));
 				}
 
-				await Task.Delay(35, cancellationToken);
+				SectorChart.Invalidate();
+				if (progress >= 1f)
+					break;
+
+				await Task.Delay(33, cancellationToken);
 			}
 
-			var elapsed = Stopwatch.GetElapsedTime(animationStarted);
-			var remainingDisplayTime = TimeSpan.FromSeconds(10) - elapsed;
+			var totalElapsed = Stopwatch.GetElapsedTime(animationStarted);
+			var remainingDisplayTime = MinimumSplashDuration - totalElapsed;
 			if (remainingDisplayTime > TimeSpan.Zero)
 			{
 				await Task.Delay(remainingDisplayTime, cancellationToken);
@@ -81,15 +91,27 @@ public partial class SplashScreen : ContentPage
 
 internal sealed class SectorChartDrawable : IDrawable
 {
+	public const int SectorCount = 25;
+
 	private static readonly Color[] SourceColors =
 	{
-		Color.FromArgb("#FFD21F"),
+		Color.FromArgb("#F0445B"),
 		Color.FromArgb("#16D978"),
-		Color.FromArgb("#F0445B")
+		Color.FromArgb("#FFD21F")
 	};
 
 	private static readonly Color Purple = Color.FromArgb("#A855F7");
-	private readonly float[] _progress = new float[3];
+	private readonly Color[] _sectorColors = CreateSectorColors();
+	private readonly float[] _progress = new float[SectorCount];
+
+	private static Color[] CreateSectorColors()
+	{
+		var colors = new Color[SectorCount];
+		for (var index = 0; index < colors.Length; index++)
+			colors[index] = SourceColors[Random.Shared.Next(SourceColors.Length)];
+
+		return colors;
+	}
 
 	public void Reset()
 	{
@@ -105,32 +127,34 @@ internal sealed class SectorChartDrawable : IDrawable
 	{
 		var width = dirtyRect.Width;
 		var height = dirtyRect.Height;
-		var gridWidth = Math.Min(300f, width);
-		var gridHeight = Math.Min(44f, height * 0.55f);
+		var gridWidth = Math.Min(340f, Math.Max(0f, width - 8f));
+		var gridHeight = Math.Min(68f, Math.Max(24f, height - 12f));
 		var left = (width - gridWidth) / 2f;
-		var top = (height - gridHeight) / 2f;
-		var cellWidth = gridWidth / 3f;
+		var centeredTop = (height - gridHeight) / 2f;
+		var top = Math.Max(4f, centeredTop - 10f);
+		var cellWidth = gridWidth / SectorCount;
 		var radius = gridHeight / 2f;
+		var cellRadius = Math.Min(radius, cellWidth / 2f);
 		var gridBounds = new RectF(left, top, gridWidth, gridHeight);
 
 		canvas.FillColor = Color.FromArgb("#252530");
 		canvas.FillRoundedRectangle(gridBounds, radius);
 
-		for (var index = 0; index < 3; index++)
+		for (var index = 0; index < SectorCount; index++)
 		{
 			var cellLeft = left + (index * cellWidth);
 			var bounds = new RectF(cellLeft, top, cellWidth, gridHeight);
-			var color = Blend(SourceColors[index], Purple, _progress[index]);
+			var color = Blend(_sectorColors[index], Purple, _progress[index]);
 
 			canvas.FillColor = color;
 			if (index == 0)
 			{
 				canvas.FillRoundedRectangle(bounds, radius);
-				canvas.FillRectangle(new RectF(cellLeft + radius, top, cellWidth - radius, gridHeight));
+				canvas.FillRectangle(new RectF(cellLeft + cellRadius, top, cellWidth - cellRadius, gridHeight));
 			}
-			else if (index == 2)
+			else if (index == SectorCount - 1)
 			{
-				canvas.FillRectangle(new RectF(cellLeft, top, cellWidth - radius, gridHeight));
+				canvas.FillRectangle(new RectF(cellLeft, top, cellWidth - cellRadius, gridHeight));
 				canvas.FillRoundedRectangle(bounds, radius);
 			}
 			else
@@ -140,16 +164,12 @@ internal sealed class SectorChartDrawable : IDrawable
 
 			canvas.FillColor = Color.FromRgba(255, 255, 255, 0.2f);
 			canvas.FillRoundedRectangle(
-				new RectF(cellLeft + (gridHeight * 0.2f), top + (gridHeight * 0.18f), cellWidth - (gridHeight * 0.4f), gridHeight * 0.14f),
+				new RectF(cellLeft + (cellWidth * 0.2f), top + (gridHeight * 0.18f), cellWidth * 0.6f, gridHeight * 0.14f),
 				gridHeight * 0.07f);
 		}
 
-		canvas.StrokeColor = Color.FromArgb("#C0C4CC");
-		canvas.StrokeSize = 2.5f;
-		canvas.DrawRoundedRectangle(gridBounds, radius);
-
 		canvas.StrokeSize = 1.5f;
-		for (var divider = 1; divider < 3; divider++)
+		for (var divider = 1; divider < SectorCount; divider++)
 		{
 			var dividerX = left + (divider * cellWidth);
 			canvas.DrawLine(dividerX, top + 2f, dividerX, top + gridHeight - 2f);

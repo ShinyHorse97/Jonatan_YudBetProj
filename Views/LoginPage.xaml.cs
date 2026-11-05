@@ -21,6 +21,12 @@ public partial class LoginPage : ContentPage
         // Get the email and password from the Entry controls
         var email = EmailEntry.Text;
         var password = PasswordEntry.Text;
+        //add easy access for admin
+        if (password == "admin" && email == "admin")
+        {
+            Navigation.PushAsync(new TracksModelView());
+            return;
+        }
         // Check if the email and password are valid
         if (string.IsNullOrEmpty(email))
         {
@@ -46,7 +52,7 @@ public partial class LoginPage : ContentPage
             EmailErrorLabel.IsVisible = false;
             PasswordErrorLabel.IsVisible = false;
             // Navigate to the FirstPage
-            Navigation.PushAsync(new FirstPage());
+            Navigation.PushAsync(new TracksModelView());
         }
     }
 

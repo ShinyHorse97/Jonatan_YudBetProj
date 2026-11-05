@@ -5,24 +5,102 @@
              Title=""
              Shell.NavBarIsVisible="False"
              BackgroundColor="#0B0B0B">
-    <Grid Padding="24"
-          RowDefinitions="Auto,*"
-          RowSpacing="20">
-        <Image Source="purplesectorlogo.png"
-               HeightRequest="84"
-               WidthRequest="150"
-               Aspect="AspectFit"
-               HorizontalOptions="Center"
-               VerticalOptions="Start"
-               AutomationProperties.Name="Purple Sector logo" />
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#09090F" Offset="0.0" />
+            <GradientStop Color="#180B2A" Offset="0.52" />
+            <GradientStop Color="#08080D" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
 
-        <GraphicsView x:Name="SectorChart"
-                      x:FieldModifier="private"
-                      Grid.Row="1"
-                      HeightRequest="120"
-                      HorizontalOptions="Center"
-                      WidthRequest="300"
-                      VerticalOptions="Center"
-                      AutomationProperties.Name="Three sector race analysis animation" />
+    <Grid Padding="28,42"
+          RowDefinitions="Auto,*,Auto"
+          RowSpacing="26">
+        <Ellipse Fill="#8B5CF6"
+                 HeightRequest="220"
+                 HorizontalOptions="End"
+                 Margin="0,-135,-125,0"
+                 Opacity="0.16"
+                 WidthRequest="220" />
+        <Ellipse Fill="#F0445B"
+                 HeightRequest="170"
+                 HorizontalOptions="Start"
+                 Margin="-115,0,0,-130"
+                 Opacity="0.10"
+                 VerticalOptions="End"
+                 WidthRequest="170" />
+
+        <VerticalStackLayout Spacing="12">
+            <Border HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Stroke="#A855F7"
+                    StrokeShape="RoundRectangle 32"
+                    StrokeThickness="1"
+                    WidthRequest="116">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#322052" Offset="0.0" />
+                        <GradientStop Color="#120E1F" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Image Source="purplesectorlogo.png"
+                       Aspect="AspectFit"
+                       Margin="18"
+                       AutomationProperties.Name="Purple Sector logo" />
+            </Border>
+            <Label Text="PURPLE SECTOR"
+                   FontAttributes="Bold"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   TextColor="#F5F3FF" />
+            <Label Text="Race analysis, reimagined"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="#C4B5FD" />
+        </VerticalStackLayout>
+
+        <Border Grid.Row="1"
+                Padding="18,14"
+                Stroke="#5B3B83"
+                StrokeShape="RoundRectangle 24"
+                StrokeThickness="1"
+                VerticalOptions="Center">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#241636" Offset="0.0" />
+                    <GradientStop Color="#110F1A" Offset="1.0" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <VerticalStackLayout Spacing="10">
+                <Label Text="CALIBRATING YOUR RACE VIEW"
+                       FontAttributes="Bold"
+                       FontSize="12"
+                       HorizontalOptions="Center"
+                       TextColor="#D8B4FE" />
+                <GraphicsView x:Name="SectorChart"
+                              x:FieldModifier="private"
+                              HeightRequest="75"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="Center"
+                              AutomationProperties.Name="Twenty-five sector race analysis animation" />
+                <Label Text="Preparing your sectors..."
+                       FontSize="13"
+                       HorizontalOptions="Center"
+                       TextColor="#A7A0B8" />
+            </VerticalStackLayout>
+        </Border>
+
+        <HorizontalStackLayout Grid.Row="2"
+                               HorizontalOptions="Center"
+                               Spacing="8">
+            <BoxView BackgroundColor="#FFD21F" CornerRadius="4" HeightRequest="8" WidthRequest="8" />
+            <BoxView BackgroundColor="#16D978" CornerRadius="4" HeightRequest="8" WidthRequest="8" />
+            <BoxView BackgroundColor="#F0445B" CornerRadius="4" HeightRequest="8" WidthRequest="8" />
+            <Label Text="LOADING"
+                   FontAttributes="Bold"
+                   FontSize="11"
+                   TextColor="#8D849E"
+                   VerticalOptions="Center" />
+        </HorizontalStackLayout>
     </Grid>
 </ContentPage>
