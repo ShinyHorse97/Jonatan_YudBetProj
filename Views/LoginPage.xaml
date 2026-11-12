@@ -21,17 +21,18 @@
                         <Label Text="Log In" Style="{StaticResource HeaderLabelStyle}" />
                         <Label Text="Sign in to access the pit" TextColor="{StaticResource TextLight}" HorizontalOptions="Center" />
 
-                        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}" />
-                        <Label x:Name="EmailErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+                        <Entry Text="{Binding EmailEntry}" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}" />
+                        <Label Text="{Binding EmailErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasEmailError}" />
 
-                        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
-                        <Label x:Name="PasswordErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+                        <Entry Text="{Binding PasswordEntry}" Placeholder="Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                        <Label Text="{Binding PasswordErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasPasswordError}" />
 
-                        <Button Text="LOGIN" Style="{StaticResource PrimaryButtonStyle}" Clicked="OnLoginButtonClicked" />
+                        <Label Text="{Binding LoginErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasLoginError}" />
+                        <Button Text="LOGIN" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding LoginCommand}" />
 
                         <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
                             <Label Text="Don't have an account?" TextColor="{StaticResource TextLight}" FontSize="12" VerticalOptions="Center" />
-                            <Button Text="Register" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Clicked="OnRegisterTapped" />
+                            <Button Text="Register" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Command="{Binding RegisterCommand}" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Border>

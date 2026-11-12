@@ -21,13 +21,10 @@
                 <Border Style="{StaticResource CardFrameStyle}"
                        WidthRequest="420">
                     <VerticalStackLayout Spacing="16">
-                        <Image Source="purple_sector_logo.png"
-                               HeightRequest="100"
-                               WidthRequest="180"
-                               Aspect="AspectFit"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Start"/>
-
+                        <Image Source="purplesectorlogo.png"
+                               HeightRequest="120"
+                               WidthRequest="120"
+                               HorizontalOptions="Center" />
                         <Label Text="Welcome to Purple Sector"
                                Style="{StaticResource HeaderLabelStyle}" />
                         <Label Text="Find your way through the grid"
@@ -36,10 +33,10 @@
 
                         <Button Text="LOGIN"
                                 Style="{StaticResource PrimaryButtonStyle}"
-                                Clicked="OnLoginButtonClicked" />
+                                Command="{Binding LoginCommand}" />
                         <Button Text="REGISTER"
                                 Style="{StaticResource PrimaryButtonStyle}"
-                                Clicked="OnRegisterButtonClicked" />
+                                Command="{Binding RegisterCommand}" />
                     </VerticalStackLayout>
                 </Border>
             </VerticalStackLayout>

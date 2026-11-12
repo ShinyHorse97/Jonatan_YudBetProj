@@ -8,6 +8,9 @@ namespace Jonatan_YudBetProj
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(WelcomePage), typeof(WelcomePage));
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
+            Routing.RegisterRoute(nameof(FirstPage), typeof(FirstPage));
         }
     }
 }

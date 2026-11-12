@@ -20,24 +20,26 @@
                         <Label Text="Sign Up" Style="{StaticResource HeaderLabelStyle}" />
                         <Label Text="Join the grid — create your account" TextColor="{StaticResource TextLight}" HorizontalOptions="Center" />
 
-                        <Entry x:Name="UsernameEntry" Placeholder="Username" Style="{StaticResource EntryStyle}" />
-                        <Label x:Name="UsernameErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+                        <Entry Text="{Binding UsernameEntry}" Placeholder="Username" Style="{StaticResource EntryStyle}" />
+                        <Label Text="{Binding UsernameErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasUsernameError}" />
 
-                        <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}" />
-                        <Label x:Name="EmailErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+                        <Entry Text="{Binding EmailEntry}" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}" />
+                        <Label Text="{Binding EmailErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasEmailError}" />
 
-                        <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
-                        <Label x:Name="PasswordErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+                        <Entry Text="{Binding PasswordEntry}" Placeholder="Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                        <Label Text="{Binding PasswordErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasPasswordError}" />
 
-                        <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
-                        <Label x:Name="ConfirmPasswordErrorLabel" Style="{StaticResource ErrorLabelStyle}" IsVisible="False" />
+                        <Entry Text="{Binding ConfirmPasswordEntry}" Placeholder="Confirm Password" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                        <Label Text="{Binding ConfirmPasswordErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasConfirmPasswordError}" />
 
-                        <Button Text="REGISTER" Style="{StaticResource PrimaryButtonStyle}" Clicked="OnRegisterButtonClicked" />
+                        <Label Text="{Binding RegisterErrorMessage}" Style="{StaticResource ErrorLabelStyle}" IsVisible="{Binding HasRegisterError}" />
+
+                        <Button Text="REGISTER" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding RegisterCommand}" />
 
 
                         <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
                             <Label Text="Already have an account?" TextColor="{StaticResource TextLight}" FontSize="12" VerticalOptions="Center" />
-                            <Button Text="Login" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Clicked="OnLoginTapped" />
+                            <Button Text="Login" BackgroundColor="Transparent" TextColor="{StaticResource Accent}" FontAttributes="Bold" Command="{Binding LoginCommand}" />
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Border>
