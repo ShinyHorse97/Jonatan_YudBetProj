@@ -105,7 +105,7 @@ namespace Jonatan_YudBetProj.ViewModels
             }
 
             IsLoggedIn = true;
-            await Shell.Current.GoToAsync("FirstPage");
+            await Shell.Current.GoToAsync("TracksModelView");
         }
 
         private void ClearErrors()

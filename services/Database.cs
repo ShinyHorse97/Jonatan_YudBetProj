@@ -39,5 +39,11 @@ namespace Jonatan_YudBetProj.services
             new RaceTrack { Id = "2", Name = "Silverstone Grand Prix", Location = "United Kingdom", Length = 5891, Turns = 18, TrackImage = "silverstonegp.png" },
             new RaceTrack { Id = "3", Name = "Suzuka Grand Prix", Location = "Japan", Length = 5807, Turns = 18, TrackImage = "suzukagp.png" }
         };
+        public static List<Racecar> RacecarsList = new List<Racecar>
+        {
+            new Racecar { Id = "1", Nickname = "Rocky", Team = "Red Bull Racing", Driver = UsersList[1], CarImage = "https://cdn-2.motorsport.com/images/amp/6xEXD9r0/s6/red-bull-racing-rb19-front-win.jpg", CarModel = "RB19", Marque = "Red Bull", Year = 2023, Horsepower = 1000, Torque = 800, Weight = 798 },
+            new Racecar { Id = "2", Nickname = "kart", Team = "Tony Kart Racing", Driver = UsersList[1], CarImage = "https://i0.wp.com/bbrkarting.com/wp-content/uploads/2025/12/2026-Tony-Kart-401T-BBR-Karting.jpg?fit=2000%2C1333&ssl=1", CarModel = "Racer 401 TS", Marque = "Tony Kart", Year = 2027, Horsepower = 30, Torque = 20, Weight = 75 },
+            new Racecar { Id = "3", Nickname = "GT3", Team = "Verstappen Racing", Driver = UsersList[1], CarImage = "https://cdn-6.motorsport.com/images/amp/0mXRjmA6/s1000/3-mercedes-amg-team-verstappen.webp", CarModel = "GT3 Evo", Marque = "Mercedes-AMG", Year = 2020, Horsepower = 550, Torque = 650, Weight = 1285 }
+        };
     }
 }

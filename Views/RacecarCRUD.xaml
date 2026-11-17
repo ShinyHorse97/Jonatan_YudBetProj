@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jonatan_YudBetProj.Views.RacecarCRUD"
+             x:Name="RacecarPage"
+             Title="Racecars"
+             BackgroundColor="{StaticResource BackgroundDark}">
+    <ScrollView>
+        <Grid RowDefinitions="Auto,*" Padding="16,24" RowSpacing="16">
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Racecars"
+                       Style="{StaticResource HeaderLabelStyle}"
+                       Margin="8,0,8,2" />
+                    <Label Text="Add a racecar or select one below to edit it."
+                       TextColor="{StaticResource TextLight}"
+                       Margin="8,0,8,4" />
+
+                    <Border Style="{StaticResource CardFrameStyle}" Padding="14">
+                        <VerticalStackLayout Spacing="9">
+                            <Label Text="{Binding FormTitle}"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource AccentAlt}" />
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnSpacing="10" RowSpacing="8">
+                                <Entry Placeholder="Nickname *" Text="{Binding Nickname}" />
+                                <Entry Grid.Column="1" Placeholder="Team" Text="{Binding Team}" />
+                                <Entry Grid.Row="1" Placeholder="Car model *" Text="{Binding CarModel}" />
+                                <Entry Grid.Row="1" Grid.Column="1" Placeholder="Marque" Text="{Binding Marque}" />
+                                <Entry Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Image URL or resource name" Text="{Binding CarImage}" />
+                                <Entry Grid.Row="3" Placeholder="Year *" Keyboard="Numeric" Text="{Binding Year}" />
+                                <Entry Grid.Row="3" Grid.Column="1" Placeholder="Weight (kg) *" Keyboard="Numeric" Text="{Binding Weight}" />
+                                <Entry Grid.Row="4" Placeholder="Horsepower *" Keyboard="Numeric" Text="{Binding Horsepower}" />
+                                <Entry Grid.Row="4" Grid.Column="1" Placeholder="Torque (Nm) *" Keyboard="Numeric" Text="{Binding Torque}" />
+                            </Grid>
+                            <Label Text="{Binding ValidationMessage}"
+                               TextColor="{StaticResource Accent}"
+                               FontSize="12" />
+                            <HorizontalStackLayout Spacing="10">
+                                <Button Text="{Binding SaveButtonText}"
+                                    Command="{Binding SaveCommand}"
+                                    HorizontalOptions="FillAndExpand" />
+                                <Button Text="Clear"
+                                    Command="{Binding ClearCommand}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding CarObsList}"
+                        SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <Label Text="No racecars have been added yet."
+                       TextColor="{StaticResource TextLight}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardFrameStyle}" Margin="0,0,0,10" Padding="12">
+                            <Grid ColumnDefinitions="110,*,Auto" ColumnSpacing="12">
+                                <Border Stroke="#3a3a3a"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 10"
+                                    BackgroundColor="#151515"
+                                    HeightRequest="85"
+                                    WidthRequest="110">
+                                    <Image Source="{Binding CarImage}" Aspect="AspectFit" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                    <Label Text="{Binding Nickname}"
+                                       FontSize="18"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource AccentAlt}" />
+                                    <Label TextColor="{StaticResource TextLight}">
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="Marque" />
+                                                <Binding Path="CarModel" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+                                    <Label Text="{Binding Team}"
+                                       TextColor="{StaticResource TextLight}" />
+                                    <Label Text="{Binding Horsepower, StringFormat='Power: {0} hp'}"
+                                       TextColor="{StaticResource TextLight}"
+                                       FontSize="12" />
+                                    <Label Text="{Binding Torque, StringFormat='Torque: {0} Nm'}"
+                                       TextColor="{StaticResource TextLight}"
+                                       FontSize="12" />
+                                    <Label Text="{Binding Weight, StringFormat='Weight: {0} kg'}"
+                                       TextColor="{StaticResource TextLight}"
+                                       FontSize="12" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Grid.Column="2" Spacing="6">
+                                    <Button Text="Edit"
+                                        Command="{Binding Source={x:Reference RacecarPage}, Path=BindingContext.EditCommand}"
+                                        CommandParameter="{Binding}"
+                                        Padding="12,6" />
+                                    <Button Text="Delete"
+                                        Command="{Binding Source={x:Reference RacecarPage}, Path=BindingContext.DeleteCommand}"
+                                        CommandParameter="{Binding}"
+                                        Padding="12,6" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>

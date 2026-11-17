@@ -1,5 +1,6 @@
 
 using Jonatan_YudBetProj.Models;
+using System.Windows.Input;
 
 namespace Jonatan_YudBetProj.Views;
 
@@ -9,13 +10,17 @@ public partial class TracksModelView : ContentPage
 	private const double HorizontalSpacing = 12;
 	private const double PageHorizontalPadding = 32;
 
-	public List<RaceTrack> RaceTracks { get; set; }
+	public ICommand NavigateToRacecarCRUDCommand { get; }
+
+
+    public List<RaceTrack> RaceTracks { get; set; }
 	public TracksModelView()
 	{
 		InitializeComponent();
 		RaceTracks = services.Database.RaceTracksList;
+		NavigateToRacecarCRUDCommand = new Command(async () => await Shell.Current.GoToAsync(nameof(RacecarCRUD)));
 		BindingContext = this;
-	}
+    }
 
 	protected override void OnSizeAllocated(double width, double height)
 	{

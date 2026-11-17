@@ -10,7 +10,8 @@ namespace Jonatan_YudBetProj
             Routing.RegisterRoute(nameof(WelcomePage), typeof(WelcomePage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
-            Routing.RegisterRoute(nameof(FirstPage), typeof(FirstPage));
+            Routing.RegisterRoute(nameof(TracksModelView), typeof(TracksModelView));
+            Routing.RegisterRoute(nameof(RacecarCRUD), typeof(RacecarCRUD));
         }
     }
 }
